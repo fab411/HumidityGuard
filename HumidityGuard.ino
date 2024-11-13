@@ -1,22 +1,4 @@
-// Der Code ist eine Regelung zur Trockenbox für Pflanzenzuschnitt in einem Karton
-// Dieses impliziert 
-// eine Feuchtigkeitsmessung mit DHT22 (AM2302) 
-// Zur Umsetzung ist eine Lüftersteuerung mit Hysteresenverhalten,
-// ein gleitender Mittelwert und 
-// Regelung anhand Temperatur Thresholds und deren Anzeige mit drei LED
-// dynamischer Konstruktor für Thresholds
-// Retry-Mechanismus wenn Lesen der Werte vom Sensor fehlschlägt und Status LED
-// Nicht-blockierende Verzögerungen lassen sich durch die Verwendung von millis() statt delay() implementieren. Dabei wird ein Timer-Konzept genutzt, um die Zeitspanne zu messen, die seit dem letzten Aufruf vergangen ist, ohne den Haupt-Loop zu blockieren.
-// Mehrstufige Fehlerbehandlung durch SystemState-Enum verwaltet verschiedene Betriebsmodi 
-//mit Status-LED für verschiedene Fehlertypen, speichern und Begrenzen der Fehleranzahl, automatische Wiederherstellung nach Fehlern und Abschließende Fehlermeldung nach mehrfachem Fehlversuch und Statusüberwachung mit Zuständen  
-//Automatische Fehlerwiederholung bis anzahl Sensorleseversuche
-// Modularisierte Lüftersteuerung
-// Adaptive Schwellenwerte, Die PID-Steuerung für den Lüfter würde die Luftfeuchtigkeit als Regelgröße verwenden, um den Lüfter so zu steuern, dass die Luftfeuchtigkeit den Zielwert erreicht.
-// Lüftersteuerung mit einem Feuchtigkeitssensor könnten wir die Kalibrierung verwenden, um den Schwellenwert für die Luftfeuchtigkeit basierend auf den Umgebungsbedingungen dynamisch zu setzen.  
-// verwendet wurden ein arduino nano, eine Motorbrücke und 4 LED mit Vorwiederstand und ein Feuchtigkeitssensor DHT22 und ein 12V Lüfter
-
-//weitere Ideen: EEPROM-Speicherung, Lüfter Regelung PWM-Signal, Hardware oder Pin-Mappings über eine zentrale config.h-Datei, Logs zur Fehleraufzeichnung und Speicherung der letzten X-Feuchtigkeits- und Temperaturwerte. Dies könnte einfach als Array oder zyklischer Puffer im RAM gespeichert werden
-// Datenspeicherung und Visualisierung,  
+// HumidityGuard.ino
 
 ///////////////////// Header ////////////////////////
 #include <DHT.h> // DHT Sensor Library Adafruit
