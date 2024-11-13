@@ -1,6 +1,8 @@
 # HumidityGuard
 Trockenbox-Regelung für Pflanzenzuschnitt mit DHT22 und Lüftersteuerung
 
+
+
 ## Übersicht
 Dieses Projekt implementiert eine Trockenbox-Regelung für die Luftfeuchtigkeit, um den Feuchtigkeitsgehalt in einem Karton mit Pflanzenzuschnitt zu steuern. Es nutzt einen DHT22-Feuchtigkeitssensor (AM2302) zur Messung der Luftfeuchtigkeit und Temperatur und steuert einen 12V Lüfter basierend auf den gemessenen Werten. Es gibt auch eine LED-Anzeige für verschiedene Feuchtigkeits-Schwellenwerte und eine Fehler-LED zur Diagnose von Problemen mit dem Sensor oder dem Lüfter.
 
@@ -20,30 +22,44 @@ Die Ziel-Feuchtigkeit und die Schwellenwerte für den Lüfter können einfach du
 ## Hardware-Anforderungen
     * Arduino Nano oder ein ähnliches Arduino-kompatibles Board
     * DHT22 Sensor (AM2302) für die Messung von Temperatur und Luftfeuchtigkeit
-    * 12V Lüfter für die Belüftung
+    * 12V 2-Pin Lüfter für die Belüftung
     * Motorbrücke (z.B. L298N) zur Steuerung des Lüfters
     * 4 LEDs für Statusanzeigen (Fehler und Schwellenwerte)
     * Widerstände (für LEDs, falls nötig)
     * Wires and Breadboard für das Testen der Schaltung
-    * Externes Netzteil für den Lüfter (z.B. 12V)
+    * Externes Netzteil für die Motorbrücke, kompatibel zu den Lüfter (z.B. 12V, 2.0A, 24W)
+
+### Pinouts:
+#### arduino_nano_pinout
+![plot](./images/arduino_nano_pinout.png) 
+
+#### L298N_motor_driver
+![plot](./images/L298N_motor_driver_pinout.png) 
+
+#### DHT22_pinout
+![plot](./images/DHT22_pinout.png) 
+
+#### LED_pinout
+![plot](./images/LED_pinout.png) 
 
 ## Code-Konfiguration
 
   ### 1. Schaltplan, Sensoren und Aktoren konfigurieren 
+  
     DHT22:
       * VCC -> Arduino 5V
       * GND -> Arduino GND
       * DATA -> Arduino Pin 11
         
     Motorbrücke
-      * VCC -> 12V
-      * GND -> FAN GND
+      * VCC -> Netzteil 12V 
+      * GND -> Netzteil GND
       * GND -> Arduino GND
       * ENA -> Arduino Pin 5 FAN 1 
       * IN1 -> Arduino Pin 4 FAN Aus
       * IN2 -> Arduino Pin 3 FAN An
       * Out1-> Fan GND
-      * Out2-> Fan IN
+      * Out2-> Fan IN / VCC
     
     Lüfter:
       * Steuerung des 12V Lüfters über eine Motorbrücke (L298N oder ähnliche) mit den Pins FAN1, LUEFTER_EIN, LUEFTER_AUS
@@ -84,6 +100,6 @@ Die Berechnung des gleitenden Durchschnitts sorgt dafür, dass einzelne Messabwe
 	}
 
 ## Erweiterungsmöglichkeiten
-    EEPROM-Speicherung: Du kannst die aktuellen Feuchtigkeitswerte oder PID-Parameter im EEPROM speichern, um sie nach einem Neustart wiederherzustellen.
-    Lüfterregelung via PWM: Wenn du den Lüfter nicht nur ein- und ausschalten, sondern auch die Geschwindigkeit steuern möchtest, kannst du PWM (Pulsweitenmodulation) verwenden.
-    Fehler- u.o Messwertprotokollierung: Der Code könnte so erweitert werden, dass Protokolle in einer Datei gespeichert werden.
+    * EEPROM-Speicherung: Du kannst die aktuellen Feuchtigkeitswerte oder PID-Parameter im EEPROM speichern, um sie nach einem Neustart wiederherzustellen.
+    * Lüfterregelung via PWM: Wenn du den Lüfter nicht nur ein- und ausschalten, sondern auch die Geschwindigkeit steuern möchtest, kannst du PWM (Pulsweitenmodulation) verwenden.
+    * Fehler- u.o Messwertprotokollierung: Der Code könnte so erweitert werden, dass Protokolle in einer Datei gespeichert werden.
