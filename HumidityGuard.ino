@@ -78,12 +78,10 @@ void setup() {
 
 }
 
-/////////////////  Initialisierung des DHT-Sensors ///////////////// 
+//Initialisierung des DHT-Sensors, Lüfter und LED
 void setupDHTSensor() {
   dht.begin();
 }
-
-///////////////// Initialisierung der Lüfter und LED //////////////////////
 void setupFanAndLEDs() {
   // Pin-Modi für den Lüfter
   pinMode(FAN1, OUTPUT);
@@ -256,7 +254,6 @@ float calculatePID(float currentHumidity) {
   settings.previousError = error;
   return output;
 }
-
 
 // Berechnung des gleitenden Durchschnitts der Luftfeuchtigkeit
 // Jedes Mal, wenn eine neue Messung durchgeführt wird, wird der Wert an der aktuellen 
