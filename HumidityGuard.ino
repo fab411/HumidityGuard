@@ -1,11 +1,10 @@
-// HumidityGuard.ino
+//////////////////////////////////////////  HumidityGuard.ino
 
 ///////////////////// Header ////////////////////////
 #include <DHT.h> // DHT Sensor Library Adafruit
 // Definitionen für den DHT-Sensor
 #define DHT_PIN 11 // Pin für den DHT-Sensor
 #define DHT_TYPE DHT22 // DHT22 (AM2302)
-
 // Initialisierung des DHT-Sensors
 DHT dht(DHT_PIN, DHT_TYPE);
 
@@ -56,7 +55,6 @@ struct LEDControlSettings {
     : led1(led1Thresh), led2(led2Thresh), led3(led3Thresh) {}
 };
 
-
 // Initialisieren der Steuerungsparameter
 float baseHumidity = 60;
 ControlSettings settings(2.0, 0.1, 1.0, baseHumidity, baseHumidity + 5.0, baseHumidity - 5.0);
@@ -106,14 +104,12 @@ void setupFanAndLEDs() {
   digitalWrite(led3Pin, LOW);
 }
 
-
 ///////////////////// Loop und Hauptfunktionen ////////////////////////
 void loop() {
   if (systemState == MAINTENANCE) {
     blinkErrorLED(ledBlinkInterval);
     return;
   }
-
   // Nicht-blockierende Verzögerungen mit Sensorablesung im festgelegten Intervall
   if (millis() - previousMillis >= retryInterval) {
     previousMillis = millis();
@@ -159,6 +155,7 @@ void loop() {
   }
 }
 
+
 ///////////////////// Unterstützende FUNKTIONEN ////////////////////////
 
 // Funktion zum Lesen des DHT-Sensors mit Retry-Mechanismus
@@ -178,6 +175,7 @@ bool readDHTWithRetry(float &humidity, float &temperature) {
   return false; // Alle Versuche fehlgeschlagen
 }
 
+// Funktion zum zum Blinken der Fehler-LED in regelmäßigen Abständen ohne blockierende Verzögerungen
 void blinkErrorLED(unsigned long interval) {
   static unsigned long previousBlinkMillis = 0;
   if (millis() - previousBlinkMillis >= interval) {
@@ -185,7 +183,6 @@ void blinkErrorLED(unsigned long interval) {
     digitalWrite(errorLedPin, !digitalRead(errorLedPin));
   }
 }
-
 
 // Funktion zur Steuerung des Lüfters basierend auf PID
 void handleFanWithPID(float currentHumidity) {
@@ -202,6 +199,7 @@ void handleFanWithPID(float currentHumidity) {
   }
 }
 
+// Funktion zum Lüfter anschalten
 void turnOnFan() {
   // Lüfter einschalten
   digitalWrite(LUEFTER_EIN, LOW);
@@ -212,6 +210,7 @@ void turnOnFan() {
   Serial.println(F("Lüfter eingeschaltet!"));
 }
 
+// Funktion zum Lüfter ausschalten
 void turnOffFan() {
   // Lüfter ausschalten und Pins zurücksetzen
   digitalWrite(FAN1, LOW);
@@ -222,7 +221,7 @@ void turnOffFan() {
   Serial.println(F("Lüfter ausgeschaltet und zurückgesetzt!"));
 }
 
-/////////////////// Funktion zur Steuerung der LEDs basierend auf den Schwellenwerten ////////////////////
+// Funktion zur Steuerung der LEDs basierend auf den Schwellenwerten
 // currentHumidity >= thresholds.ledX gibt entweder true (1) oder false (0), damit direkt an digitalWrite()
 void handleLEDs(float currentHumidity) {
   // LED1 leuchtet bei überschreiten von led1
@@ -259,7 +258,7 @@ float calculatePID(float currentHumidity) {
 }
 
 
-/////////////// Berechnung des gleitenden Durchschnitts der Luftfeuchtigkeit /////////////
+// Berechnung des gleitenden Durchschnitts der Luftfeuchtigkeit
 // Jedes Mal, wenn eine neue Messung durchgeführt wird, wird der Wert an der aktuellen 
 // readIndex-Position im Array aus der Summe total entfernt und durch den neuen Messwert ersetzt.
 float calculateMovingAverage(float newHumidity) {
