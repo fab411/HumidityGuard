@@ -28,17 +28,20 @@ Die Ziel-Feuchtigkeit und die Schwellenwerte für den Lüfter können einfach du
     * Externes Netzteil für die Motorbrücke, kompatibel zu den Lüfter (z.B. 12V, 2.0A, 24W)
 
 ### Pinouts:
-#### arduino_nano_pinout
+#### arduino_nano
 ![plot](./images/arduino_nano_pinout.png) 
 
 #### L298N_motor_driver
 ![plot](./images/L298N_motor_driver_pinout.png) 
 
-#### DHT22_pinout
+#### DHT22_temperature_humidity_sensor
 ![plot](./images/DHT22_pinout.png) 
 
 #### LED_pinout
 ![plot](./images/LED_pinout.png) 
+
+#### HumidityGuard_scheme
+![plot](./images/HumidityGuard_scheme.png) 
 
 ## Code-Konfiguration
 
