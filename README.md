@@ -41,7 +41,7 @@ Die Ziel-Feuchtigkeit und die Schwellenwerte für den Lüfter können einfach du
 ![plot](./images/LED_pinout.png) 
 
 #### HumidityGuard_scheme
-![plot](./images/HumidityGuard_scheme.png) 
+![plot](./images/HumidityGuard_scheme.drawio.png) 
 
 ## Code-Konfiguration
 
