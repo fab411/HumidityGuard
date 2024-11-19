@@ -1,5 +1,5 @@
 # HumidityGuard
-Trockenbox-Lüfterregelung für Pflanzenzuschnitt mit DHT22 und Arduino Nano
+Trockenbox-Lüfterregelung für Pflanzenzuschnitt mit DHT22 und Arduino Nano. Der Lüfter soll dabei mit Unterdruck die Luft von innen nach außen zirkulieren.
 
 ## Übersicht
 Dieses Projekt implementiert eine Trockenbox-Regelung für die Luftfeuchtigkeit, um den Feuchtigkeitsgehalt in einem Karton mit Pflanzenzuschnitt zu steuern. Es nutzt einen DHT22-Feuchtigkeitssensor (AM2302) zur Messung der Luftfeuchtigkeit und Temperatur und steuert einen 12V Lüfter basierend auf den gemessenen Werten. Es gibt auch eine LED-Anzeige für verschiedene Feuchtigkeits-Schwellenwerte und eine Fehler-LED zur Diagnose von Problemen mit dem Sensor oder dem Lüfter.
